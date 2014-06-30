@@ -7,15 +7,43 @@
 //
 
 #import "SNAppDelegate.h"
+#import "SNMainController.h"
+
+
+
+#import "SNUserViewController.h"
+#import "SNLoginViewController.h"
+
 
 @implementation SNAppDelegate
-
+- (void)dealloc
+{
+    RELEASE_SAFELY(_window);
+    [super dealloc];
+}
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    //测试左边栏
+//    SNCategoryViewController * categoryVC = [[SNCategoryViewController alloc] init];
+//    self.window.rootViewController = categoryVC;
+    //测试右边栏个人
+//    SNUserViewController * userVC = [[SNUserViewController alloc] init];
+//    self.window.rootViewController = userVC;
+    //测试登入页面
+    
+   
+//    SNLoginViewController * userVC = [[SNLoginViewController alloc] init];
+//    UINavigationController * rootNC = [[UINavigationController alloc] initWithRootViewController:userVC];
+//    self.window.rootViewController = rootNC;
+    
+    
+   self.window.rootViewController = [[SNMainController sharedInstance] navController];
+    
     return YES;
 }
 
