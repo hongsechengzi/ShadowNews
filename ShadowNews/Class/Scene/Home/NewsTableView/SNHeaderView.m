@@ -7,8 +7,8 @@
 //
 
 #import "SNHeaderView.h"
-#import "UIImageView+WebCache.h"
 #import "SNLocalNewsModel.h"
+#import "SNHeaderNewsModel.h"
 
 #define HEADERWIDTH 320
 #define HEADERHEIGHT 100
@@ -62,7 +62,8 @@
         _firstNewsArray = [firstNewsArray retain];
     }
     for (int i = 0; i < self.firstNewsArray.count; i++) {
-       SNLocalNewsModel * news = [_firstNewsArray objectAtIndex:i];
+//       SNLocalNewsModel * news = [_firstNewsArray objectAtIndex:i];
+        SNHeaderNewsModel * news = [_firstNewsArray objectAtIndex:i];
        // !!!:还要添加标题,后期优化
         UIImageView * newsImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0,HEADERWIDTH, HEADERHEIGHT)];
         newsImageView.userInteractionEnabled = YES;

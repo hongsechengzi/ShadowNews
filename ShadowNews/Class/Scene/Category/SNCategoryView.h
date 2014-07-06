@@ -17,5 +17,5 @@
 @interface SNCategoryView : UIView
 
 @property(nonatomic,assign)id<SNCategoryViewDelegate> delegate;
-
+@property(nonatomic,retain)NSDictionary * categoryDic;
 @end

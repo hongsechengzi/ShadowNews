@@ -10,9 +10,12 @@
 #import "SNMainController.h"
 
 
-
+#import "SNCategoryViewController.h"
 #import "SNUserViewController.h"
 #import "SNLoginViewController.h"
+#import "SNLocalAddress.h"
+#import "SNPolViewController.h"
+#import "SNPolPageModel.h"
 
 
 @implementation SNAppDelegate
@@ -30,7 +33,7 @@
     
     //测试左边栏
 //    SNCategoryViewController * categoryVC = [[SNCategoryViewController alloc] init];
-//    self.window.rootViewController = categoryVC;
+//   self.window.rootViewController = categoryVC;
     //测试右边栏个人
 //    SNUserViewController * userVC = [[SNUserViewController alloc] init];
 //    self.window.rootViewController = userVC;
@@ -40,9 +43,18 @@
 //    SNLoginViewController * userVC = [[SNLoginViewController alloc] init];
 //    UINavigationController * rootNC = [[UINavigationController alloc] initWithRootViewController:userVC];
 //    self.window.rootViewController = rootNC;
+//     SNPolViewController * VC = [[SNPolViewController alloc] init];
+//     self.window.rootViewController = VC ;
+
+//     [SNPolPageModel polPageSuccess:^(NSDictionary * polDic) {
+//         NSLog(@"headerNewsArray = %@",polDic);
+//     } fail:^(NSError *error) {
+//         NSLog(@"error:%@",error);
+//     }];
     
+   
     
-   self.window.rootViewController = [[SNMainController sharedInstance] navController];
+    self.window.rootViewController = [[SNMainController sharedInstance] navController];
     
     return YES;
 }

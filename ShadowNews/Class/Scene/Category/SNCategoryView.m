@@ -7,42 +7,57 @@
 //
 
 #import "SNCategoryView.h"
+#import "SNCategoryModel.h"
 
 @implementation SNCategoryView
-
+- (void)dealloc
+{
+    self.categoryDic = nil;
+    self.delegate = nil;
+    [super dealloc];
+}
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        [self setupSubviews];
     }
     return self;
 }
-- (void)setupSubviews
+
+- (void)setCategoryDic:(NSDictionary *)categoryDic
 {
-    self.backgroundColor = [UIColor cyanColor];
+    if (_categoryDic != categoryDic) {
+        [_categoryDic release];
+        _categoryDic = [categoryDic retain];
+    }
+    self.backgroundColor = [UIColor grayColor];
+    NSArray * titleArray = [categoryDic allKeys];
     
-    NSArray * iconNameArr = @[@"01-refresh",@"02-redo",@"03-loopback",@"04-squiggle",@"05-shuffle",@"06-magnifying-glass"];
-    NSArray * categoryArr = @[@"新闻",@"订阅",@"图片",@"视频",@"跟帖",@"电台"];
+    int i = 0;
+    for (NSString * titleName  in titleArray) {
+        
+        SNCategoryModel * category = [categoryDic objectForKey:titleName];
     
-    for (int i = 0; i < 6; i++) {
         //图标
         UIImageView * iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(30, 80 + 60*i, 30, 30)];
-        UIImage * iconImage = [UIImage imageNamed:iconNameArr[i]];
+        UIImage * iconImage = [UIImage imageNamed:category.imageName];
         iconImageView.image = iconImage;
         [self addSubview:iconImageView];
+        [iconImageView release];
         
         //按钮
         UIButton * categoryButton = [UIButton buttonWithType:UIButtonTypeSystem];
         categoryButton.frame = CGRectMake(80, 80 + 60*i, 60, 30);
-        [categoryButton setTitle:categoryArr[i] forState:UIControlStateNormal];
+        [categoryButton setTitle:category.title forState:UIControlStateNormal];
         [categoryButton addTarget:self action:@selector(didClickButtonAction:) forControlEvents:UIControlEventTouchUpInside];
         categoryButton.titleLabel.font = [UIFont systemFontOfSize:24];
         [self addSubview:categoryButton];
+        i++;
     }
-
 }
+
+
 - (void)didClickButtonAction:(UIButton *)button
 {
     NSLog(@"button.titleLabel.text %@",button.titleLabel.text);

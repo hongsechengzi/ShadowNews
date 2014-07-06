@@ -18,6 +18,7 @@
 @end
 
 @implementation SNLocalNewsModel
+
 #pragma mark - 实例方法.
 - (void)dealloc
 {
@@ -25,10 +26,8 @@
     self.title = nil;
     self.publishTime = nil;
     self.docId = nil;
-    
-#if ! __has_feature(objc_arc)
     [super dealloc];
-#endif
+
 }
 
 + (instancetype) localNewsWithImgSrc: (NSString *) imgSrc

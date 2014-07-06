@@ -8,6 +8,7 @@
 
 #import "SNCategoryViewController.h"
 #import "SNCategoryView.h"
+#import "SNCategoryPageModel.h"
 
 
 @interface SNCategoryViewController ()
@@ -30,45 +31,64 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-  
     CGFloat width = [[UIScreen mainScreen] bounds].size.width;
     CGFloat height = [[UIScreen mainScreen] bounds].size.height;
     SNCategoryView * categoryView = [[SNCategoryView alloc] initWithFrame:CGRectMake(0, 0, 3*width/5, height)];
     [self.view addSubview: categoryView];
+    categoryView.categoryDic = [SNCategoryPageModel categoryDic];
     categoryView.delegate = self;
 
     
 }
 - (void)categoryViewDidClickButtonAction:(UIButton *)button
 {
+    
   NSLog(@"button.titleLabel.text %@",button.titleLabel.text);
     NSString * categoryName = button.titleLabel.text;
-    if ([categoryName isEqualToString:@"新闻"]) {
+    NSDictionary * dic = [SNCategoryPageModel categoryDic];
+    
+    NSArray * titleArray = [dic allKeys];
+    for (NSString * titleName in titleArray) {
+        if ([categoryName isEqualToString:titleName]) {
+          //  SNCategoryView * category = [dic objectForKey:categoryName];
+        // !!!:  未完成:实现跳转到各个页面
+            
+            
         
-        NSLog(@"进入新闻界面");
-        
-    };
-    if ([categoryName isEqualToString:@"订阅"]) {
-         NSLog(@"进入订阅界面");
-        
-        
-    };
-    if ([categoryName isEqualToString:@"图片"]) {
-         NSLog(@"进入图片界面");
-        
-    };
-    if ([categoryName isEqualToString:@"视频"]) {
-         NSLog(@"进入视频界面");
-        
-    };
-    if ([categoryName isEqualToString:@"跟帖"]) {
-         NSLog(@"进入跟帖界面");
-        
-    };
-    if ([categoryName isEqualToString:@"电台"]) {
-         NSLog(@"进入电台界面");
-        
-    };
+            NSLog(@"%@",categoryName);
+            
+        }
+    }
+    
+    
+    
+    
+//    if ([categoryName isEqualToString:@"新闻"]) {
+//        
+//        NSLog(@"进入新闻界面");
+//        
+//    };
+//    if ([categoryName isEqualToString:@"订阅"]) {
+//         NSLog(@"进入订阅界面");
+//        
+//        
+//    };
+//    if ([categoryName isEqualToString:@"图片"]) {
+//         NSLog(@"进入图片界面");
+//        
+//    };
+//    if ([categoryName isEqualToString:@"视频"]) {
+//         NSLog(@"进入视频界面");
+//        
+//    };
+//    if ([categoryName isEqualToString:@"跟帖"]) {
+//         NSLog(@"进入跟帖界面");
+//        
+//    };
+//    if ([categoryName isEqualToString:@"电台"]) {
+//         NSLog(@"进入电台界面");
+//        
+//    };
     
     
     
