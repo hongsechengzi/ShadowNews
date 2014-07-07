@@ -8,21 +8,23 @@
 
 #import <Foundation/Foundation.h>
 
+
 /**
  *  获取数据成功时,执行此 block.
  *
  *  @param array 一个数组,存储本地新闻对象.
  */
-typedef void(^SNMilitaryPageModelSuccessBlock)(NSArray * militaryNewsArray);
+typedef void(^SNSimplePageModelSuccessBlock)(NSArray * simpleNewsArray);
 
 /**
  *  获取数据失败时,执行此 block.
  *
  *  @param error 存储有错误信息.
  */
-typedef void(^SNMilitaryPageModelFailBlock)(NSError * error);
+typedef void(^SNSimplePageModelFailBlock)(NSError * error);
 
-@interface SNMilitaryPageModel : NSObject
+@class SNMainMenu;
+@interface SNSimplePageModel : NSObject
 
 
 /**
@@ -32,9 +34,10 @@ typedef void(^SNMilitaryPageModelFailBlock)(NSError * error);
  *  @param success 获取数据成功,执行此 block.
  *  @param fail    获取数据失败,执行此 block.
  */
-+ (void)range: (NSRange) range
-       success: (SNMilitaryPageModelSuccessBlock) success
-          fail: (SNMilitaryPageModelFailBlock) fail;
++ (void)simpleMainMenu: (SNMainMenu *) newsItem
+       rageRange: (NSRange) range
+       success: (SNSimplePageModelSuccessBlock) success
+          fail: (SNSimplePageModelFailBlock) fail;
 
 
 @end

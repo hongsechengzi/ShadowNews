@@ -22,13 +22,13 @@
 
 + (instancetype)footer
 {
-     NSLog(@"%s",__FUNCTION__);
+    // NSLog(@"%s",__FUNCTION__);
     return [[MJRefreshFooterView alloc] init];
 }
 
 #pragma mark - 初始化
 - (instancetype)initWithFrame:(CGRect)frame {
-    NSLog(@"%s",__FUNCTION__);
+   // NSLog(@"%s",__FUNCTION__);
     if (self = [super initWithFrame: frame]) {
         // 移除刷新时间
 		[_lastUpdateTimeLabel removeFromSuperview];
@@ -39,7 +39,7 @@
 
 - (void)setFrame:(CGRect)frame
 {
-    NSLog(@"%s",__FUNCTION__);
+   // NSLog(@"%s",__FUNCTION__);
     [super setFrame:frame];
     
     CGFloat h = frame.size.height;
@@ -53,7 +53,7 @@
 #pragma mark 重写设置ScrollView
 - (void)setScrollView:(UIScrollView *)scrollView
 {
-    NSLog(@"%s",__FUNCTION__);
+    //NSLog(@"%s",__FUNCTION__);
     // 1.移除以前的监听器
     [_scrollView removeObserver:self forKeyPath:MJRefreshContentSize context:nil];
     // 2.监听contentSize
@@ -69,7 +69,7 @@
 #pragma mark 监听UIScrollView的属性
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    NSLog(@"%s",__FUNCTION__);
+   // NSLog(@"%s",__FUNCTION__);
     [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     
     if (!self.userInteractionEnabled || self.alpha <= 0.01 || self.hidden) return;
@@ -82,7 +82,7 @@
 #pragma mark 重写调整frame
 - (void)adjustFrame
 {
-    NSLog(@"%s",__FUNCTION__);
+    //NSLog(@"%s",__FUNCTION__);
     // 内容的高度
     CGFloat contentHeight = _scrollView.contentSize.height;
     // 表格的高度
@@ -96,7 +96,7 @@
 #pragma mark 设置状态
 - (void)setState:(MJRefreshState)state
 {
-    NSLog(@"%s",__FUNCTION__);
+    //NSLog(@"%s",__FUNCTION__);
     if (_state == state) return;
     MJRefreshState oldState = _state;
     
@@ -180,7 +180,7 @@
 #pragma mark 获得scrollView的内容 超出 view 的高度
 - (CGFloat)contentBreakView
 {
-    NSLog(@"%s",__FUNCTION__);
+   // NSLog(@"%s",__FUNCTION__);
     CGFloat h = _scrollView.frame.size.height - _scrollViewInitInset.bottom - _scrollViewInitInset.top;
     return _scrollView.contentSize.height - h;
 }
@@ -189,7 +189,7 @@
 // 合理的Y值(刚好看到上拉刷新控件时的contentOffset.y，取相反数)
 - (CGFloat)validY
 {
-    NSLog(@"%s",__FUNCTION__);
+   // NSLog(@"%s",__FUNCTION__);
     CGFloat deltaH = [self contentBreakView];
     if (deltaH > 0) {
         return deltaH -_scrollViewInitInset.top;
@@ -201,13 +201,13 @@
 // view的类型
 - (int)viewType
 {
-    NSLog(@"%s",__FUNCTION__);
+   // NSLog(@"%s",__FUNCTION__);
     return MJRefreshViewTypeFooter;
 }
 
 - (void)free
 {
-    NSLog(@"%s",__FUNCTION__);
+   // NSLog(@"%s",__FUNCTION__);
     [super free];
     [_scrollView removeObserver:self forKeyPath:MJRefreshContentSize];
 }

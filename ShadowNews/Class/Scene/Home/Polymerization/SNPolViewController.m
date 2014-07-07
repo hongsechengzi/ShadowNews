@@ -44,7 +44,7 @@
     [super viewDidLoad];
     
     
-    UICollectionViewFlowLayout * flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    UICollectionViewFlowLayout * flowLayout = [[UICollectionViewFlowLayout alloc] init] ;
     //行间距,根据滚动方向确定行
 //    flowLayout.minimumLineSpacing = 2;
 //    //列间距,最小间距,不能小于放俩个视图的最大间距,
@@ -52,7 +52,8 @@
    // flowLayout.sectionInset = UIEdgeInsetsMake(2, 2, 2, 2);
     flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
     
-    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT) collectionViewLayout:flowLayout];
+    self.collectionView = [[[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT) collectionViewLayout:flowLayout] autorelease];
+    [flowLayout release];
 //    self.collectionView.delegate = self;
 //    self.collectionView.dataSource = self;
     self.collectionView.backgroundColor = [UIColor yellowColor];

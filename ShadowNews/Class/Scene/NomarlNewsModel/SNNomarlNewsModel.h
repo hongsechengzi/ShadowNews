@@ -28,7 +28,7 @@
  *  @param tag        cell图标
  *  @return 实例对象.
  */
-+ (instancetype) headerNewsWithImgSrc: (NSString *) imgSrc
++ (instancetype) normarlNewsWithImgSrc: (NSString *) imgSrc
                                 title: (NSString *) title
                            replyCount: (NSUInteger) replyCount
                                 docId: (NSString *) docId

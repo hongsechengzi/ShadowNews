@@ -7,13 +7,7 @@
 //
 
 #import "SNShowImageCell.h"
-#import "SNLocalNewsModel.h"
 #import "SNNomarlNewsModel.h"
-
-#import "SNHeaderNewsModel.h"
-
-#import "SNHomeConst.h"
-
 @interface SNShowImageCell ()
 
 @property(nonatomic,retain)UIImageView * firstIV;
@@ -56,15 +50,15 @@
     self.secondIV = [[[UIImageView alloc] initWithFrame:CGRectMake((width-10)/3+5, titleHeight, (width-10)/3, height-15)] autorelease];
     self.secondIV.backgroundColor = [UIColor yellowColor];
     [self.contentView addSubview:self.secondIV];
-    self.thirdIV = [[[UIImageView alloc] initWithFrame:CGRectMake(2*(width-10)/3+10, titleHeight, (width-10)/3, height-15)] autorelease];
+    self.thirdIV = [[[[UIImageView alloc] initWithFrame:CGRectMake(2*(width-10)/3+10, titleHeight, (width-10)/3, height-15)] autorelease] autorelease];
     self.thirdIV.backgroundColor = [UIColor yellowColor];
     [self.contentView addSubview:self.thirdIV];
     
-    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0,3*width/4, titleHeight)];
+    self.titleLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0,3*width/4, titleHeight)] autorelease];
    // self.titleLabel.backgroundColor = [UIColor redColor];
     [self.contentView addSubview:self.titleLabel];
     
-    self.replyCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(3*width/4, 0,width/4, titleHeight)];
+    self.replyCountLabel = [[[UILabel alloc] initWithFrame:CGRectMake(3*width/4, 0,width/4, titleHeight)] autorelease];
     self.replyCountLabel.font = [UIFont systemFontOfSize:10];
    // self.replyCountLabel.backgroundColor = [UIColor blueColor];
     self.replyCountLabel.textAlignment = NSTextAlignmentRight ;
@@ -82,21 +76,27 @@
         _news = [news retain];
     }
     
-    CGFloat width = SNNewsNormalCellWidth;
+    CGFloat width = SNNewsNormalCellWidth-10;
     CGFloat height = SNNewsImageCellHeight;
     CGFloat titleHeight = SNNewsImageCellTitleHeigth;
     UIImage * placeholderImage = [UIImage imageNamed:SNNewsCellPlaceholderImage];
     [self.firstIV setImageWithURL:[NSURL URLWithString:news.imgSrc] placeholderImage:placeholderImage];
-    self.firstIV.frame = CGRectMake(0,titleHeight, (width-10)/3, height-15);
+    
+    
     NSDictionary * secondImgsrcDic = news.imgExtraArray[0];
     NSString * secondImgsrc = [secondImgsrcDic objectForKey:@"imgsrc"];
+    
     [self.secondIV setImageWithURL:[NSURL URLWithString:secondImgsrc] placeholderImage:placeholderImage];
-    self.secondIV.frame = CGRectMake((width-10)/3+5, titleHeight, (width-10)/3, height-15);
+    
+    
+    
     NSDictionary * thirdImgsrcDic = news.imgExtraArray[1];
     NSString * thirdImgsrc = [thirdImgsrcDic objectForKey:@"imgsrc"];
     
     [self.thirdIV setImageWithURL:[NSURL URLWithString:thirdImgsrc] placeholderImage:placeholderImage];
-    self.thirdIV.frame = CGRectMake(2*(width-10)/3+10, titleHeight, (width-10)/3, height-15);
+    
+    
+    
     self.titleLabel.text = news.title;
     if (news.replyCount > 10000) {
         self.replyCountLabel.text = [NSString stringWithFormat:@"%.1f万跟帖",news.replyCount/10000.0];
@@ -105,6 +105,14 @@
     }
     
     self.titleLabel.text = news.title;
+    
+    
+    self.firstIV.frame = CGRectMake(0,titleHeight, (width-10)/3, height-15);
+    self.secondIV.frame = CGRectMake((width-10)/3+5, titleHeight, (width-10)/3, height-15);
+    self.thirdIV.frame = CGRectMake(2*(width-10)/3+10, titleHeight, (width-10)/3, height-15);
+    self.titleLabel.frame =CGRectMake(0, 0,4*width/5, titleHeight);
+    self.replyCountLabel.frame = CGRectMake(4*width/5, 0,width/5, titleHeight);
+    //self.replyCountLabel.backgroundColor = [UIColor redColor];
 
     
 }

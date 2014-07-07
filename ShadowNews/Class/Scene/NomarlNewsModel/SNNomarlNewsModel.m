@@ -32,7 +32,7 @@
     [super dealloc];
 #endif
 }
-+ (instancetype) headerNewsWithImgSrc:(NSString *)imgSrc title:(NSString *)title replyCount:(NSUInteger)replyCount docId:(NSString *)docId digest:(NSString *)digest tag:(NSString *)tag imgExtraArray:(NSArray *)imgExtraArray
++ (instancetype) normarlNewsWithImgSrc:(NSString *)imgSrc title:(NSString *)title replyCount:(NSUInteger)replyCount docId:(NSString *)docId digest:(NSString *)digest tag:(NSString *)tag imgExtraArray:(NSArray *)imgExtraArray
 {
     SNNomarlNewsModel * model = [[[self class] alloc] initWithImgSrc:imgSrc title:title replyCount:replyCount docId:docId digest:digest tag:tag imgExtraArray:imgExtraArray];
     return SNAutorelease(model);

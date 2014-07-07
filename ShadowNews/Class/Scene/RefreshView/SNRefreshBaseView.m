@@ -74,7 +74,7 @@
         [self addSubview:self.statusLabel];
      
         //箭头图片
-         self.arrowImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"102-walk"]];
+         self.arrowImage = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"102-walk"]] autorelease];
          self.arrowImage.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
         //self.arrowImage = arrowImage;
         [self addSubview:self.arrowImage];

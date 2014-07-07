@@ -7,23 +7,23 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SNMainMenu.h"
+
 
 /**
  *  获取数据成功时,执行此 block.
  *
  *  @param array 一个数组,存储给页面新闻对象.
  */
-typedef void(^SNHeaderPageModelSuccessBlock)(NSArray * headerNewsArray);
+typedef void(^SNNormalPageModelSuccessBlock)(NSArray * headerNewsArray);
 
 /**
  *  获取数据失败时,执行此 block.
  *
  *  @param error 存储有错误信息.
  */
-typedef void(^SNHeaderPageModelFailBlock)(NSError * error);
+typedef void(^SNNormalPageModelFailBlock)(NSError * error);
 
-
+@class SNMainMenu;
 @interface SNNomarlNewsPageModel : NSObject
 
 /**
@@ -34,9 +34,9 @@ typedef void(^SNHeaderPageModelFailBlock)(NSError * error);
  *  @param success 获取数据成功,执行此 block.
  *  @param fail    获取数据失败,执行此 block.
  */
-+ (void) mainMenu: (SNMainMenu *) newsItem
++ (void) nomarlMainMenu: (SNMainMenu *) newsItem
           range: (NSRange) range
-        success: (SNHeaderPageModelSuccessBlock) success
-           fail: (SNHeaderPageModelFailBlock) fail;
+        success: (SNNormalPageModelSuccessBlock) success
+           fail: (SNNormalPageModelFailBlock) fail;
 
 @end

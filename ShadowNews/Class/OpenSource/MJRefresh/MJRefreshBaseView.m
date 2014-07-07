@@ -39,7 +39,7 @@
 #pragma mark - 初始化方法
 - (instancetype)initWithScrollView:(UIScrollView *)scrollView
 {
-    NSLog(@"%s",__FUNCTION__);
+    //NSLog(@"%s",__FUNCTION__);
     if (self = [super init]) {
         self.scrollView = scrollView;
     }
@@ -65,7 +65,7 @@
 
 #pragma mark 构造方法
 - (instancetype)initWithFrame:(CGRect)frame {
-    NSLog(@"%s",__FUNCTION__);
+    //NSLog(@"%s",__FUNCTION__);
     if (self = [super initWithFrame:frame]) {
         // 1.自己的属性
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth;

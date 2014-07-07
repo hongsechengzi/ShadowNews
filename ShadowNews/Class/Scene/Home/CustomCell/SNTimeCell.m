@@ -55,7 +55,7 @@
     
     [self.contentView addSubview:self.timeLabel];
     
-    self.replyCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(width-width/4-15-60,height/3-10, 60, 10)];
+    self.replyCountLabel = [[[UILabel alloc] initWithFrame:CGRectMake(width-width/4-15-60,height/3-10, 60, 10)] autorelease];
    // self.replyCountLabel.backgroundColor = [UIColor yellowColor];
     self.replyCountLabel.textAlignment = NSTextAlignmentRight;
     self.replyCountLabel.font = [UIFont systemFontOfSize:10];
@@ -82,7 +82,7 @@
     self.titleLabel.text = news.title;
     self.titleLabel.frame = CGRectMake(width/4 +5, 5, width-width/4-15, 2*height/3);
     
-    NSDateFormatter * publishFormatter = [[NSDateFormatter alloc] init];
+    NSDateFormatter * publishFormatter = [[[NSDateFormatter alloc] init] autorelease];
     [publishFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];//HH:24小时制
     NSString * publishStr = news.publishTime;
     NSDate * publishDate = [publishFormatter dateFromString:publishStr];

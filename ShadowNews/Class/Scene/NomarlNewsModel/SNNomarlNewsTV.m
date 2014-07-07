@@ -29,7 +29,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"[self.newsArray count] = %ld",[self.newsArray count]);
+    NSLog(@"normal :[self.newsArray count] = %ld",[self.newsArray count]);
     
     return [self.newsArray count];
 }
@@ -44,7 +44,7 @@
         static NSString * imageIdentifier = @"imageCell";
         SNShowImageCell * cell =  [tableView dequeueReusableCellWithIdentifier:imageIdentifier];
         if (!cell) {
-            cell = [[SNShowImageCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:imageIdentifier];
+            cell = [[[SNShowImageCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:imageIdentifier] autorelease];
         }
         cell.news = news;
         return cell;

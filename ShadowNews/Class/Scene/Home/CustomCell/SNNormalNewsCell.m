@@ -8,10 +8,6 @@
 
 #import "SNNormalNewsCell.h"
 #import "SNLocalNewsModel.h"
-//#import "UIKit+AFNetworking.h"
-
-#import "SNHeaderNewsModel.h"
-#import "SNHomeConst.h"
 #import "SNNomarlNewsModel.h"
 
 @interface SNNormalNewsCell ()
@@ -64,7 +60,7 @@
 
     [self.contentView addSubview:self.detailLabel];
     
-    self.replyCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(width-width/4-15-60 ,2 *height/3-10, 60, 10)];
+    self.replyCountLabel = [[[UILabel alloc] initWithFrame:CGRectMake(width-width/4-15-60 ,2 *height/3-10, 60, 10)] autorelease];
     self.replyCountLabel.backgroundColor = [UIColor yellowColor];
     self.replyCountLabel.textAlignment = NSTextAlignmentRight;
     self.replyCountLabel.font = [UIFont systemFontOfSize:10];

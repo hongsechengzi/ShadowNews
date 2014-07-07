@@ -7,7 +7,7 @@
 //
 
 #import "SNHeaderPageModel.h"
-#import "SNHeaderNewsModel.h"
+#import "SNNomarlNewsModel.h"
 
 @implementation SNHeaderPageModel
 
@@ -38,7 +38,7 @@
             NSString * tag = [newsOriginal objectForKey:@"TAG"];
             
             NSArray * imgExtraArray = [newsOriginal objectForKey:@"imgextra"];
-            [headerNewsArray addObject:[SNHeaderNewsModel headerNewsWithImgSrc:imgSrc title:title replyCount:replyCount docId:docId digest:digest tag:tag imgExtraArray:imgExtraArray]];
+            [headerNewsArray addObject:[SNNomarlNewsModel normarlNewsWithImgSrc:imgSrc title:title replyCount:replyCount docId:docId digest:digest tag:tag imgExtraArray:imgExtraArray]];
         }];
         success(headerNewsArray);
     } failure:^(AFHTTPRequestOperation * operation, NSError * error) {

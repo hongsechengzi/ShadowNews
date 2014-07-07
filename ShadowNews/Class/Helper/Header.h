@@ -11,6 +11,7 @@
 
 #define RELEASE_SAFELY(__point) do{[__point release],__point = nil;} while(0)
 
+
 #define SCREENWIDTH 320
 #define SCREENHEIGHT  [[UIScreen mainScreen] bounds].size.height
 
