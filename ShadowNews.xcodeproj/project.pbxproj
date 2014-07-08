@@ -20,6 +20,8 @@
 		C21DF4B21967DA4400BFCBBE /* SNTimeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C21DF4AE1967DA4400BFCBBE /* SNTimeCell.m */; };
 		C21DF4C41967EC5B00BFCBBE /* SNNomarlNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C21DF4C31967EC5B00BFCBBE /* SNNomarlNewsModel.m */; };
 		C21DF4CE1967FDFA00BFCBBE /* SNNomarlNewsPageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C21DF4CD1967FDFA00BFCBBE /* SNNomarlNewsPageModel.m */; };
+		C22E0E53196C0D1500D8FC8A /* SNNewsView.m in Sources */ = {isa = PBXBuildFile; fileRef = C22E0E52196C0D1500D8FC8A /* SNNewsView.m */; };
+		C22E0E56196C132200D8FC8A /* SNNewsDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C22E0E55196C132200D8FC8A /* SNNewsDelegate.m */; };
 		C22FEBC81962A43A002F6588 /* SNPolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C22FEBC71962A43A002F6588 /* SNPolViewController.m */; };
 		C22FEBCB1962B669002F6588 /* SNPolCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C22FEBCA1962B669002F6588 /* SNPolCollectionCell.m */; };
 		C23A4DD619667AFA00A0A2B4 /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C23A4DCC19667AFA00A0A2B4 /* MJRefresh.bundle */; };
@@ -29,6 +31,7 @@
 		C23A4DDA19667AFA00A0A2B4 /* MJRefreshHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C23A4DD519667AFA00A0A2B4 /* MJRefreshHeaderView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		C24094C01961179E007CB3CA /* SNCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C24094BF1961179E007CB3CA /* SNCategoryViewController.m */; };
 		C24094C3196117C0007CB3CA /* SNCategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = C24094C2196117C0007CB3CA /* SNCategoryView.m */; };
+		C247478E196ADA8F00A690FE /* SNDetailNewsPageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C247478D196ADA8F00A690FE /* SNDetailNewsPageModel.m */; };
 		C24CCFFF196A716000503B9C /* SNNewsTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = C24CCFFE196A716000503B9C /* SNNewsTableView.m */; };
 		C24E34AF19681CE000864F26 /* SNMainMenuModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C24E34AE19681CE000864F26 /* SNMainMenuModel.m */; };
 		C24E34B219681D0900864F26 /* SNMainMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = C24E34B119681D0900864F26 /* SNMainMenu.m */; };
@@ -36,6 +39,7 @@
 		C25CAEBF1963B6BC0007A341 /* SNHeaderPageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C25CAEBE1963B6BC0007A341 /* SNHeaderPageModel.m */; };
 		C27B629419604637007AF655 /* SNNewsItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = C27B629319604637007AF655 /* SNNewsItemView.m */; };
 		C2802280196453F700B7C380 /* SNCollectionHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = C280227F196453F700B7C380 /* SNCollectionHeadView.m */; };
+		C298F5B6196ABE5A00809C7B /* SNHeaderNewsTV.m in Sources */ = {isa = PBXBuildFile; fileRef = C298F5B5196ABE5A00809C7B /* SNHeaderNewsTV.m */; };
 		C2A1E65619617CE400E306FB /* SNLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A1E65519617CE400E306FB /* SNLoginViewController.m */; };
 		C2A1E65919617D0200E306FB /* SNLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A1E65819617D0200E306FB /* SNLoginView.m */; };
 		C2A38FA019613671006D5476 /* 01-refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = C2A38F3219613670006D5476 /* 01-refresh.png */; };
@@ -234,6 +238,10 @@
 		C21DF4C31967EC5B00BFCBBE /* SNNomarlNewsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNNomarlNewsModel.m; sourceTree = "<group>"; };
 		C21DF4CC1967FDFA00BFCBBE /* SNNomarlNewsPageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNNomarlNewsPageModel.h; sourceTree = "<group>"; };
 		C21DF4CD1967FDFA00BFCBBE /* SNNomarlNewsPageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNNomarlNewsPageModel.m; sourceTree = "<group>"; };
+		C22E0E51196C0D1500D8FC8A /* SNNewsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNNewsView.h; sourceTree = "<group>"; };
+		C22E0E52196C0D1500D8FC8A /* SNNewsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNNewsView.m; sourceTree = "<group>"; };
+		C22E0E54196C132200D8FC8A /* SNNewsDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNNewsDelegate.h; sourceTree = "<group>"; };
+		C22E0E55196C132200D8FC8A /* SNNewsDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNNewsDelegate.m; sourceTree = "<group>"; };
 		C22FEBC61962A43A002F6588 /* SNPolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNPolViewController.h; sourceTree = "<group>"; };
 		C22FEBC71962A43A002F6588 /* SNPolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNPolViewController.m; sourceTree = "<group>"; };
 		C22FEBC91962B669002F6588 /* SNPolCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNPolCollectionCell.h; sourceTree = "<group>"; };
@@ -252,6 +260,8 @@
 		C24094BF1961179E007CB3CA /* SNCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNCategoryViewController.m; sourceTree = "<group>"; };
 		C24094C1196117C0007CB3CA /* SNCategoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNCategoryView.h; sourceTree = "<group>"; };
 		C24094C2196117C0007CB3CA /* SNCategoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNCategoryView.m; sourceTree = "<group>"; };
+		C247478C196ADA8F00A690FE /* SNDetailNewsPageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SNDetailNewsPageModel.h; path = NewsDetail/SNDetailNewsPageModel.h; sourceTree = "<group>"; };
+		C247478D196ADA8F00A690FE /* SNDetailNewsPageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SNDetailNewsPageModel.m; path = NewsDetail/SNDetailNewsPageModel.m; sourceTree = "<group>"; };
 		C24CCFFD196A716000503B9C /* SNNewsTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNNewsTableView.h; sourceTree = "<group>"; };
 		C24CCFFE196A716000503B9C /* SNNewsTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNNewsTableView.m; sourceTree = "<group>"; };
 		C24E34AD19681CE000864F26 /* SNMainMenuModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNMainMenuModel.h; sourceTree = "<group>"; };
@@ -267,6 +277,8 @@
 		C27B6295196054BA007AF655 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		C280227E196453F700B7C380 /* SNCollectionHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNCollectionHeadView.h; sourceTree = "<group>"; };
 		C280227F196453F700B7C380 /* SNCollectionHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNCollectionHeadView.m; sourceTree = "<group>"; };
+		C298F5B4196ABE5A00809C7B /* SNHeaderNewsTV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNHeaderNewsTV.h; sourceTree = "<group>"; };
+		C298F5B5196ABE5A00809C7B /* SNHeaderNewsTV.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNHeaderNewsTV.m; sourceTree = "<group>"; };
 		C2A1E65419617CE400E306FB /* SNLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNLoginViewController.h; sourceTree = "<group>"; };
 		C2A1E65519617CE400E306FB /* SNLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNLoginViewController.m; sourceTree = "<group>"; };
 		C2A1E65719617D0200E306FB /* SNLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNLoginView.h; sourceTree = "<group>"; };
@@ -514,6 +526,8 @@
 			children = (
 				C215E8911962446E00EA8C34 /* SNDetailViewController.h */,
 				C215E8921962446F00EA8C34 /* SNDetailViewController.m */,
+				C247478C196ADA8F00A690FE /* SNDetailNewsPageModel.h */,
+				C247478D196ADA8F00A690FE /* SNDetailNewsPageModel.m */,
 			);
 			name = NewsDetail;
 			sourceTree = "<group>";
@@ -622,6 +636,8 @@
 			children = (
 				C25CAEBD1963B6BC0007A341 /* SNHeaderPageModel.h */,
 				C25CAEBE1963B6BC0007A341 /* SNHeaderPageModel.m */,
+				C298F5B4196ABE5A00809C7B /* SNHeaderNewsTV.h */,
+				C298F5B5196ABE5A00809C7B /* SNHeaderNewsTV.m */,
 			);
 			path = HeaderPage;
 			sourceTree = "<group>";
@@ -998,6 +1014,10 @@
 			children = (
 				C2D87EEA195E6A8C007046B1 /* SNNewsViewController.h */,
 				C2D87EEB195E6A8C007046B1 /* SNNewsViewController.m */,
+				C22E0E54196C132200D8FC8A /* SNNewsDelegate.h */,
+				C22E0E55196C132200D8FC8A /* SNNewsDelegate.m */,
+				C22E0E51196C0D1500D8FC8A /* SNNewsView.h */,
+				C22E0E52196C0D1500D8FC8A /* SNNewsView.m */,
 				C24CCFFD196A716000503B9C /* SNNewsTableView.h */,
 				C24CCFFE196A716000503B9C /* SNNewsTableView.m */,
 				C27B629219604637007AF655 /* SNNewsItemView.h */,
@@ -1229,6 +1249,7 @@
 				C20F4BF01968F54C001002E9 /* SNSimpleNewsModel.m in Sources */,
 				C2C2B6FA1966E4B6008BEC52 /* UIAlertView+AFNetworking.m in Sources */,
 				C2D87F2B195E9FF4007046B1 /* SNHeaderView.m in Sources */,
+				C22E0E53196C0D1500D8FC8A /* SNNewsView.m in Sources */,
 				C2C2B7021966F9AE008BEC52 /* SNHomeConst.m in Sources */,
 				C2D188031961616000B133D7 /* AFURLResponseSerialization.m in Sources */,
 				C21DF4CE1967FDFA00BFCBBE /* SNNomarlNewsPageModel.m in Sources */,
@@ -1243,8 +1264,10 @@
 				C2D187FD1961616000B133D7 /* AFHTTPRequestOperationManager.m in Sources */,
 				C2C2B6DF1966B0AC008BEC52 /* SNCategoryModel.m in Sources */,
 				C2D187DD1961600800B133D7 /* SNLocalPageModel.m in Sources */,
+				C247478E196ADA8F00A690FE /* SNDetailNewsPageModel.m in Sources */,
 				C2AB6E8F1964057700816DC3 /* SNPolPageModel.m in Sources */,
 				C21DF4AF1967DA4400BFCBBE /* SNNormalNewsCell.m in Sources */,
+				C298F5B6196ABE5A00809C7B /* SNHeaderNewsTV.m in Sources */,
 				C24E34AF19681CE000864F26 /* SNMainMenuModel.m in Sources */,
 				C2AF7E141965A693007E5F1F /* SNRefreshHeaderView.m in Sources */,
 				C215E89B19625E3C00EA8C34 /* SNLocalAddress.m in Sources */,
@@ -1283,6 +1306,7 @@
 				C2A3901319614132006D5476 /* SNUserView.m in Sources */,
 				C2A3901019614113006D5476 /* SNUserViewController.m in Sources */,
 				C24094C3196117C0007CB3CA /* SNCategoryView.m in Sources */,
+				C22E0E56196C132200D8FC8A /* SNNewsDelegate.m in Sources */,
 				C2A1E65619617CE400E306FB /* SNLoginViewController.m in Sources */,
 				C27B629419604637007AF655 /* SNNewsItemView.m in Sources */,
 				C21DF4B01967DA4400BFCBBE /* SNShowImageCell.m in Sources */,

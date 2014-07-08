@@ -10,4 +10,5 @@
 
 @interface SNPolViewController : UIViewController<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
+@property(nonatomic,retain)UICollectionView * collectionView;
 @end

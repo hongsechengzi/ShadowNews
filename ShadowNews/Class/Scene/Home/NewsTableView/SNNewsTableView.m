@@ -12,24 +12,55 @@
 
 @interface SNNewsTableView ()
 
-
+@property (copy, nonatomic, readwrite) NSString * title; //!< 新闻板块名称.
+@property (assign, nonatomic, readwrite) BOOL preLoad; //!< 是否是预加载.出于用户体验的考虑,新闻视图可能会预加载某些页面.对于预加载的页面,往往可以暂不发起网络请求,获取最新数据.
 
 
 @end
 
-
 @implementation SNNewsTableView
 
-
-
-- (id)initWithFrame:(CGRect)frame
+- (void)dealloc
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        [self setupSubviews];
+    [_footerRefreshView free];
+    [_headerRefreshView free];
+    self.footerRefreshView = nil;
+    self.headerRefreshView = nil;
+    self.headerView = nil;
+    self.title = nil;
+    [super dealloc];
+}
+
+//- (id)initWithFrame:(CGRect)frame
+//{
+//    self = [super initWithFrame:frame];
+//    if (self) {
+//        [self setupSubviews];
+//    }
+//    return self;
+//}
+
++ (instancetype)tableViewPageWithTitle: (NSString *) title
+                      preLoad: (BOOL) preLoad
+{
+    SNNewsTableView * tableViewPage = [[[self class] alloc] initWithTitle: title preLoad:preLoad];
+    SNAutorelease(tableViewPage);
+    return tableViewPage;
+}
+
+// ???:观察下,表视图,触发代理的时机是 moveToWindow,还是movweToSuperView?
+// ???:中间的轮转页面,是不是在 moveToSuperView时,触发代理,更合适呢?
+- (instancetype)initWithTitle: (NSString *) title
+                      preLoad: (BOOL) preLoad
+{
+    if (self = [super init]) {
+        self.title = title;
+        self.preLoad = preLoad;
     }
+    [self setupSubviews];
     return self;
 }
+
 - (void)setupSubviews
 {
 
@@ -40,6 +71,8 @@
     
     self.footerRefreshView = [MJRefreshFooterView footer];
     self.footerRefreshView.scrollView = self;
+    self.headerRefreshView = [MJRefreshHeaderView header];
+    self.headerRefreshView.scrollView = self;
 }
 
 

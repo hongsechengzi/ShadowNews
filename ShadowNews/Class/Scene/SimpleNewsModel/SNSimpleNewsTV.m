@@ -40,6 +40,16 @@
     return self;
 }
 
+//- (void)setTableView:(SNNewsTableView *)tableView
+//{
+//    if (_tableView != tableView) {
+//        [_tableView release];
+//        _tableView = [tableView retain];
+//    }
+//    self.tableView.delegate = self;
+//    self.tableView.dataSource = self;
+//}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -90,7 +100,7 @@
     [SNSimplePageModel simpleMainMenu:mianMenu rageRange:NSMakeRange(0, 20) success:^(NSArray *simpleNewsArray) {
      self.newsArray = simpleNewsArray;
      self.tableView.headerView.firstNewsArray = simpleNewsArray;
-         NSLog(@"=========");
+         
     [self.tableView reloadData];
     } fail:^(NSError *error) {
         NSLog(@"error = %@",error);
@@ -98,7 +108,6 @@
     
     self.tableView.footerRefreshView.beginRefreshingBlock = ^(MJRefreshBaseView * refreshView){
         NSInteger  startRecord = self.newsArray.count;
-        
         [SNSimplePageModel simpleMainMenu:mianMenu rageRange:NSMakeRange(startRecord, 20) success:^(NSArray *simpleNewsArray) {
             NSMutableArray * arr = [NSMutableArray arrayWithArray:self.newsArray];
             if ([[arr lastObject] isEqual:[simpleNewsArray firstObject]]) {
@@ -112,6 +121,19 @@
         } fail:^(NSError *error) {
             NSLog(@"error = %@",error);
         }];
+    };
+    
+    self.tableView.headerRefreshView.beginRefreshingBlock = ^(MJRefreshBaseView * refreshView){
+    
+        [SNSimplePageModel simpleMainMenu:mianMenu rageRange:NSMakeRange(0, 20) success:^(NSArray *simpleNewsArray) {
+            self.newsArray = simpleNewsArray;
+            self.tableView.headerView.firstNewsArray = simpleNewsArray;
+            [self.tableView.headerRefreshView endRefreshing];
+            [self.tableView reloadData];
+        } fail:^(NSError *error) {
+            NSLog(@"error = %@",error);
+        }];
+
     };
 }
 

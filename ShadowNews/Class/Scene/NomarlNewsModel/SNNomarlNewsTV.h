@@ -8,8 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+@class SNNewsTableView;
+@class SNMainMenu;
 @interface SNNomarlNewsTV : NSObject<UITableViewDelegate,UITableViewDataSource>
 
 @property(nonatomic,retain)NSArray * newsArray;//!<要展示的新闻数组
+@property(nonatomic,retain)SNNewsTableView * tableView;
+
+- (void)handlePageDataWithMainMenu:(SNMainMenu *)mianMenu;
+
+- (instancetype)initWithTableView:(SNNewsTableView *)tableView;
 
 @end

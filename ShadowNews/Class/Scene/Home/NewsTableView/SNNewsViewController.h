@@ -7,15 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SNNewsView.h"
+
+
 
 @class SNNewsItemView;
-@interface SNNewsViewController : UIViewController<UIScrollViewDelegate>
+
+@interface SNNewsViewController : UIViewController<UIScrollViewDelegate,SNNewsViewDataSource,SNNewsViewDelegate>
 
 @property(nonatomic,retain)NSArray * newsArray;//!<要展示的新闻数组
 
 @property(nonatomic,retain)SNNewsItemView * newsItemScroll;//!< 选择新闻类型滚动条
 
 @property(nonatomic,retain)NSDictionary * newsMenuDic;//!<新闻菜单的字典
+
 
 
 @end

@@ -20,44 +20,31 @@
 #import "SNNomarlNewsModel.h"
 #import "SNNomarlNewsPageModel.h"
 #import "SNNomarlNewsTV.h"
-
-//#import "SNNormalNewsCell.h"
-//#import "SNShowImageCell.h"
 #import "SNHomeConst.h"
 
 #import "SNLocalNewsTV.h"
 #import "SNSimpleNewsTV.h"
 #import "SNSimplePageModel.h"
-
+#import "SNHeaderNewsTV.h"
 
 #import "SNCategoryViewController.h"
 #import "SNUserViewController.h"
-#import "MJRefresh.h"
 #import "SNNewsTableView.h"
+#import "SNPolViewController.h"
 
 
-
-//#define MUNEHEIGHT 30
-//#define HEADERHEIGHT 100
-
-//static CGFloat muneHeight = 30;
-//static CGFloat headerHeight = 100;
 
 @interface SNNewsViewController ()
 
-//@property(nonatomic,retain)SNHeaderView * headerView;//!<头条新闻视图
 @property(nonatomic,assign)NSInteger currentIndex;//!<当前头条新闻图像下标
 @property(nonatomic,retain)SNNewsTableView * tableView;//!表视图
-//@property(nonatomic,assign)NSInteger newsItemIndex;//!<新闻菜单下标
 @property(nonatomic,retain)NSMutableArray * newsMenuArray;//!<菜单数组
 
 
 @property(nonatomic,retain)SNNomarlNewsTV * nomarlNewsTV;
 @property(nonatomic,retain)SNLocalNewsTV * localNewsTV;//!<执行本地新闻tableview代理方法的对象
-@property(nonatomic,retain)SNSimpleNewsTV * simpleNewsTV;//军事
-@property(nonatomic,retain)MJRefreshFooterView * footerRefreshView;
-@property(nonatomic,retain)MJRefreshHeaderView * headererRefreshView;
-@property(nonatomic,assign)BOOL isRefresh;
+@property(nonatomic,retain)SNSimpleNewsTV * simpleNewsTV;
+@property(nonatomic,retain)SNHeaderNewsTV * headerNewsTV;
 
 @end
 
@@ -71,10 +58,6 @@
     self.nomarlNewsTV = nil;
     self.newsMenuArray = nil;
     self.simpleNewsTV = nil;
-    [_footerRefreshView free];
-    [_headererRefreshView free];
-    self.footerRefreshView = nil;
-    self.headererRefreshView = nil;
     [super dealloc];
 }
 
@@ -82,26 +65,36 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+            self.automaticallyAdjustsScrollViewInsets = NO;
     
     }
     return self;
+}
+- (void)loadView
+{
+    SNNewsView * newsView = [[SNNewsView alloc] init];
+    newsView.delegate = self;
+    newsView.dataSource = self;
+    self.view = newsView;
+    SNRelease(newsView);
 }
 - (void)viewDidLoad
 {
     // NSLog(@"%@",self.tableView);
     [super viewDidLoad];
      self.title = @"ShadowNews";
-    [self setupHeaderPage];
     [self setupNormalSubviews];
+   // [self.headerNewsTV handleHeaderPageData];
     [self setupItemButton];
  
     
     self.newsItemScroll = [[[SNNewsItemView alloc] initWithFrame:CGRectMake(0, 64, SCREENWIDTH, SNNewsViewMenuHeight)] autorelease];
     self.newsItemScroll.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.newsItemScroll];
-    self.newsItemScroll.showsVerticalScrollIndicator = NO;
-    self.newsItemScroll.showsHorizontalScrollIndicator = NO;
-    self.newsItemScroll.delegate = self;
+//    self.newsItemScroll.showsVerticalScrollIndicator = NO;
+//    self.newsItemScroll.showsHorizontalScrollIndicator = NO;
+//    self.newsItemScroll.delegate = self;
+
     
     NSArray * newsArr = [self.newsMenuDic allKeys];
     self.newsMenuArray = [NSMutableArray arrayWithArray:newsArr];
@@ -110,9 +103,44 @@
     UISegmentedControl * segment = [[UISegmentedControl alloc] initWithItems:self.newsMenuArray];
     segment.frame = CGRectMake(0, 0,self.newsMenuArray.count * 60, SNNewsViewMenuHeight);
     [self.newsItemScroll addSubview:segment];
-    self.newsItemScroll.contentSize = CGSizeMake(self.newsMenuArray.count * 60, SNNewsViewMenuHeight);
+//    self.newsItemScroll.contentSize = CGSizeMake(self.newsMenuArray.count * 60, SNNewsViewMenuHeight);
     [segment addTarget:self action:@selector(didClickSegmentControlAction:) forControlEvents:UIControlEventValueChanged];
 }
+#pragma mark -------------合代码
+- (SNNewsTableView *)newsView:(SNNewsView *)newsView
+                 viewForTitle:(NSString *) title
+                      preLoad:(BOOL) preLoad
+{
+    // !!!:下一步要做的事: 为不同的页面板块,返回"不同"的SNNewsTabelView对象即可.
+//    UILabel * label = [[UILabel alloc] init];
+//    label.text = title;
+//    return label;
+    
+    SNNewsTableView * tableView = [[SNNewsTableView alloc] initWithTitle:title preLoad:YES];
+    [self addDelegateForCell:tableView];
+    return tableView;
+    
+    // !!!:无法轮转的原因:始终返回同一个 tableView.
+//    return self.tableView;
+}
+- (NSArray *) menuInNewsView: (SNNewsView *) newsView
+{
+
+    return self.newsMenuArray;
+
+}
+
+
+
+- (void)addDelegateForCell: (SNNewsTableView *) tableView
+{
+
+
+
+}
+
+
+
 #pragma mark ---布局BarItem按钮
 - (void)setupItemButton
 {
@@ -129,6 +157,7 @@
     SNCategoryViewController * catergory = [[SNCategoryViewController alloc] init];
     [self presentViewController:catergory animated:YES completion:nil];
     [catergory release];
+   
 }
 - (void)didClickRightBarItemAction:(UIBarButtonItem *)buttonItem
 {
@@ -137,92 +166,19 @@
 #pragma mark -----布局子视图
 - (void)setupNormalSubviews
 {
+   // self.tableView = [[[SNNewsTableView alloc] initWithFrame:CGRectMake(5, SNNewsViewMenuHeight, SCREENWIDTH-10, SCREENHEIGHT)] autorelease];
     
-    self.tableView = [[[SNNewsTableView alloc] initWithFrame:CGRectMake(5, SNNewsViewMenuHeight, SCREENWIDTH-10, SCREENHEIGHT)] autorelease];
-    self.tableView.headerView.scrollView.delegate = self;
+    self.tableView = [[[SNNewsTableView alloc] init] autorelease];
     
+   // self.tableView.headerView.scrollView.delegate = self;
     
-    
-    //上拉加载
-//    self.footerRefreshView = [MJRefreshFooterView footer];
-//    self.footerRefreshView.scrollView = self.tableView;
-    
+
+    self.headerNewsTV =[[SNHeaderNewsTV alloc] initWithTableView:self.tableView];
+   // self.headerNewsTV.tableView = self.tableView;
+    [self.headerNewsTV handleHeaderPageData];
     [self.view addSubview:self.tableView];
-    
-    self.nomarlNewsTV = [[[SNNomarlNewsTV alloc] init] autorelease];
-    
-    
-}
-#pragma 下拉刷新上拉加载
-- (void)footerRefreshviewLoadDataWithSegmentedControl:(UISegmentedControl *)segmentControl
-{
-    NSString *  selectItem = [self.newsMenuArray objectAtIndex:segmentControl.selectedSegmentIndex];
-    self.footerRefreshView.beginRefreshingBlock = ^(MJRefreshBaseView * refreshView){
-        self.isRefresh = NO;
-        NSInteger startRecord = self.newsArray.count;
-        if ([selectItem isEqualToString:@"头条"]) {
-            [self setupHeaderPage];
-        }else{
-            SNMainMenu * oneNewsMenu = [self.newsMenuDic objectForKey:selectItem];
-            if ([oneNewsMenu.pageKey isEqualToString:SNMainMenuNormalPageKey]) {
-                [SNNomarlNewsPageModel nomarlMainMenu:oneNewsMenu range:NSMakeRange(startRecord, 20) success:^(NSArray * nomarlNewsArray) {                    
-                    NSMutableArray * arr = [NSMutableArray arrayWithArray:self.newsArray];
-                    if ([[arr lastObject] isEqual:[nomarlNewsArray firstObject]]) {
-                        [arr removeObject:arr.lastObject];
-                    }
-                    [arr addObjectsFromArray:nomarlNewsArray];
-                    self.newsArray = (NSMutableArray *)arr;
-                    self.nomarlNewsTV.newsArray = self.newsArray;
-                    self.tableView.headerView.firstNewsArray = self.newsArray;
-                    [self.footerRefreshView endRefreshing];
-                    [self.tableView reloadData];
-                } fail:^(NSError *error) {
-                    NSLog(@"error = %@",error);
-                }];
-            }
-            
-            if ([oneNewsMenu.pageKey isEqualToString:SNMainMenuSimplePageKey]) {
-                [SNSimplePageModel simpleMainMenu:oneNewsMenu rageRange:NSMakeRange(startRecord, 20) success:^(NSArray *simpleNewsArray) {
-                    NSMutableArray * arr = [NSMutableArray arrayWithArray:self.newsArray];
-                    if ([[arr lastObject] isEqual:[simpleNewsArray firstObject]]) {
-                        [arr removeObject:arr.lastObject];
-                    }
-                    [arr addObjectsFromArray:simpleNewsArray];
-                    self.newsArray = (NSMutableArray *)arr;
-                    self.tableView.headerView.firstNewsArray = self.newsArray;
-                    self.simpleNewsTV.newsArray = self.newsArray;
-                    [self.footerRefreshView endRefreshing];
-                    [self.tableView reloadData];
-                } fail:^(NSError *error) {
-                    NSLog(@"error = %@",error);
-                }];
-            }
-            if ([oneNewsMenu.pageKey isEqualToString:SNMainMenuLocalPageKey]) {
-                [self gotoLocalPage];
-            }
-        }
-    };
-}
-- (void)setupHeaderRefreshview
-{
-
-
-
 }
 
-- (void)setupHeaderPage
-{
-    [SNHeaderPageModel  header:@"头条" range:NSMakeRange(0, 20) success:^(NSArray *headerNewsArray) {
-        self.newsArray = headerNewsArray;
-        self.nomarlNewsTV.newsArray = self.newsArray;
-        self.tableView.headerView.firstNewsArray = self.newsArray;
-        self.tableView.delegate = self.nomarlNewsTV;
-        self.tableView.dataSource = self.nomarlNewsTV;
-       [self.tableView reloadData];
-    } fail:^(NSError *error) {
-        NSLog(@"error = %@",error);
-    }];
-}
 
 - (void)didReceiveMemoryWarning
 {
@@ -232,93 +188,44 @@
 #pragma mark --------选择新闻菜单的分段控件设置
 - (void)didClickSegmentControlAction:(UISegmentedControl *)segmentControl
 {
-    self.simpleNewsTV = [[[SNSimpleNewsTV alloc] initWithTableView:self.tableView] autorelease];
-    self.tableView.headerView.scrollView.delegate = self;
     
+    self.tableView.headerView.scrollView.delegate = self;    
     NSString *  selectItem = [self.newsMenuArray objectAtIndex:segmentControl.selectedSegmentIndex];
    // NSLog(@"selectitem = %@",selectItem);
    
     if ([selectItem isEqualToString:@"头条"]) {
-        [self setupHeaderPage];
-    }else{
         
+         self.headerNewsTV = [[[SNHeaderNewsTV alloc] initWithTableView:self.tableView] autorelease];
+        [self.headerNewsTV handleHeaderPageData];
+    }else{
+      
      SNMainMenu * oneNewsMenu = [self.newsMenuDic objectForKey:selectItem];
         NSLog(@"oneNewsMenu.pageKey =%@",oneNewsMenu.pageKey);
         if ([oneNewsMenu.pageKey isEqualToString:SNMainMenuNormalPageKey]) {
-           [SNNomarlNewsPageModel nomarlMainMenu:oneNewsMenu range:NSMakeRange(0, 20) success:^(NSArray * nomarlNewsArray) {
-               self.nomarlNewsTV = [[[SNNomarlNewsTV alloc] init] autorelease] ;
-               self.newsArray = nomarlNewsArray;
-               self.nomarlNewsTV.newsArray = self.newsArray;
-               self.tableView.headerView.firstNewsArray = self.newsArray;
-               self.tableView.delegate = self.nomarlNewsTV;
-               self.tableView.dataSource = self.nomarlNewsTV;
-               [self.tableView reloadData];
-           } fail:^(NSError *error) {
-               NSLog(@"error = %@",error);
-           }];
+            self.nomarlNewsTV = [[[SNNomarlNewsTV alloc] initWithTableView:self.tableView] autorelease];
+            self.nomarlNewsTV = [[SNNomarlNewsTV alloc] initWithTableView:self.tableView];
+            
+            [self.nomarlNewsTV handlePageDataWithMainMenu:oneNewsMenu];
         }        
         if ([oneNewsMenu.pageKey isEqualToString:SNMainMenuSimplePageKey]) {
-        
-           
-//            self.tableView.delegate = self.simpleNewsTV;
-//            self.tableView.dataSource = self.simpleNewsTV;
-
+            self.simpleNewsTV = [[[SNSimpleNewsTV alloc] initWithTableView:self.tableView] autorelease];
             [self.simpleNewsTV
              handlePageDataWithMainMenu:oneNewsMenu];
             
-//        [SNSimplePageModel simpleMainMenu:oneNewsMenu rageRange:NSMakeRange(0, 20) success:^(NSArray *simpleNewsArray) {
-//                    self.simpleNewsTV = [[[SNSimpleNewsTV alloc] init] autorelease];
-//                    self.newsArray = simpleNewsArray;
-//                    self.tableView.headerView.firstNewsArray = self.newsArray;
-//                    self.tableView.delegate = self.simpleNewsTV;
-//                    self.tableView.dataSource = self.simpleNewsTV;
-//                    self.simpleNewsTV.newsArray = self.newsArray;
-//                    [self.tableView reloadData];
-//                } fail:^(NSError *error) {
-//                    NSLog(@"error = %@",error);
-//                }];
-            
             }
-            
-       
         if ([oneNewsMenu.pageKey isEqualToString:SNMainMenuLocalPageKey]) {
-            [self gotoLocalPage];
+            self.localNewsTV = [[[SNLocalNewsTV alloc] initWithTableView:self.tableView] autorelease];
+            [self.localNewsTV handlePageDataWithMainMenu:oneNewsMenu];
         }
-    
+        if ([oneNewsMenu.pageKey isEqualToString:SNMainMenuPolymerizationPageKey]) {
+          // [self.tableView removeFromSuperview];
+            
+            SNPolViewController * polVC = [[SNPolViewController alloc] init];
+            polVC.view.frame =CGRectMake(5, SNNewsViewMenuHeight, SCREENWIDTH-10, SCREENHEIGHT);
+            [self.view addSubview:polVC.collectionView];
+        }
      }
-//    [self footerRefreshviewLoadDataWithSegmentedControl:segmentControl];
-    
 }
-    
-- (void)gotoPolymerizationPage
-{
-
-
-    
-    
-
-}
-
-- (void)gotoLocalPage
-{
-    [SNLocalPageModel local:@"北京" range:NSMakeRange(0, 20) success:^(NSArray *localNewsArray) {
-        self.localNewsTV = [[[SNLocalNewsTV alloc] init] autorelease];
-        self.newsArray = localNewsArray;
-        self.tableView.headerView.firstNewsArray = self.newsArray;
-        self.tableView.delegate = self.localNewsTV;
-        self.tableView.dataSource = self.localNewsTV;
-        self.localNewsTV.newsArray = self.newsArray;
-        [self.tableView reloadData];
-    } fail:^(NSError *error) {
-        NSLog(@"error = %@",error);
-    }];
-}
-- (void)gotoSimplePage
-{
-    
-
-}
-
 
 #pragma mark ---------头条新闻滚动视图设置-----
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView

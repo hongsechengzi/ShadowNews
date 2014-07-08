@@ -18,7 +18,7 @@
 
 @interface SNPolViewController ()
 @property(nonatomic,retain)NSDictionary * mainDic;
-@property(nonatomic,retain)UICollectionView * collectionView;
+//@property(nonatomic,retain)UICollectionView * collectionView;
 @property(nonatomic,retain)MJRefreshHeaderView * headerRefreshView;
 @end
 
@@ -52,7 +52,7 @@
    // flowLayout.sectionInset = UIEdgeInsetsMake(2, 2, 2, 2);
     flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
     
-    self.collectionView = [[[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT) collectionViewLayout:flowLayout] autorelease];
+    self.collectionView = [[[UICollectionView alloc] initWithFrame:CGRectMake(0, 94, SCREENWIDTH, SCREENHEIGHT) collectionViewLayout:flowLayout] autorelease];
     [flowLayout release];
 //    self.collectionView.delegate = self;
 //    self.collectionView.dataSource = self;

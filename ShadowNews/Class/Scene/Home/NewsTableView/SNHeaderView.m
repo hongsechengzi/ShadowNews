@@ -34,25 +34,25 @@
 - (void)setupSubview
 {
     CGFloat width = self.frame.size.width;
-    _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, HEADERWIDTH, HEADERHEIGHT)];
-    _scrollView.backgroundColor = [UIColor cyanColor];
-    _scrollView.contentSize = CGSizeMake(3 * HEADERWIDTH, HEADERHEIGHT);
-    _scrollView.contentOffset = CGPointMake(HEADERWIDTH, 0);
-    _scrollView.pagingEnabled = YES;
+    self.scrollView = [[[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, HEADERWIDTH, HEADERHEIGHT)] autorelease];
+    self.scrollView.backgroundColor = [UIColor cyanColor];
+    self.scrollView.contentSize = CGSizeMake(3 * HEADERWIDTH, HEADERHEIGHT);
+    self.scrollView.contentOffset = CGPointMake(HEADERWIDTH, 0);
+    self.scrollView.pagingEnabled = YES;
     // !!!:禁用回弹
-    _scrollView.bounces = NO;
-    _scrollView.showsVerticalScrollIndicator = NO;
-    _scrollView.showsHorizontalScrollIndicator = NO;
+    self.scrollView.bounces = NO;
+    self.scrollView.showsVerticalScrollIndicator = NO;
+    self.scrollView.showsHorizontalScrollIndicator = NO;
     
     for (int i = 0; i < 3; i++) {
         UIScrollView * scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(HEADERWIDTH*i, 0, width, HEADERHEIGHT)];
         scroll.backgroundColor = [UIColor redColor];
-        [_scrollView addSubview:scroll];
+        [self.scrollView addSubview:scroll];
         scroll.showsVerticalScrollIndicator = NO;
         scroll.showsHorizontalScrollIndicator = NO;
         [scroll release];
     }
-    [self addSubview:_scrollView];   
+    [self addSubview:self.scrollView];
     self.imageArray = [NSMutableArray array];
 }
 
@@ -62,8 +62,8 @@
         [_firstNewsArray release];
         _firstNewsArray = [firstNewsArray retain];
     }
-    for (int i = 0; i < self.firstNewsArray.count; i++) {
-//       SNLocalNewsModel * news = [_firstNewsArray objectAtIndex:i];
+    for (int i = 0; i < _firstNewsArray.count; i++) {
+
         SNNomarlNewsModel * news = [_firstNewsArray objectAtIndex:i];
        // !!!:还要添加标题,后期优化
         UIImageView * newsImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0,HEADERWIDTH, HEADERHEIGHT)];

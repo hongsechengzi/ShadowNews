@@ -54,14 +54,14 @@
     [self.contentView addSubview:self.titleLabel];
     
     self.detailLabel = [[[UILabel alloc] initWithFrame:CGRectMake(width/4+5, height/3, width-width/4-15, 2 *height/3)] autorelease];
-    self.detailLabel.backgroundColor = [UIColor greenColor];
+    //self.detailLabel.backgroundColor = [UIColor greenColor];
     self.detailLabel.font = [UIFont systemFontOfSize:10];
     self.detailLabel.numberOfLines = 0;
 
     [self.contentView addSubview:self.detailLabel];
     
     self.replyCountLabel = [[[UILabel alloc] initWithFrame:CGRectMake(width-width/4-15-60 ,2 *height/3-10, 60, 10)] autorelease];
-    self.replyCountLabel.backgroundColor = [UIColor yellowColor];
+   // self.replyCountLabel.backgroundColor = [UIColor yellowColor];
     self.replyCountLabel.textAlignment = NSTextAlignmentRight;
     self.replyCountLabel.font = [UIFont systemFontOfSize:10];
     [self.detailLabel addSubview:self.replyCountLabel];
